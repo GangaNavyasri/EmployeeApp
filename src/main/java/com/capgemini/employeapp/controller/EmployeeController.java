@@ -57,7 +57,7 @@ public class EmployeeController {
 		return "updateEmployeeForm";
 	}
 	
-	@RequestMapping(value = "/updateEmployee", method = RequestMethod.POST)
+	@RequestMapping(value = "/editEmployeePage/updateEmployee", method = RequestMethod.POST)
 	public String updateEmployeePage(@ModelAttribute Employee employee) {
 		employeeService.updateEmployee(employee);
 		return "redirect:/findAllEmployees";

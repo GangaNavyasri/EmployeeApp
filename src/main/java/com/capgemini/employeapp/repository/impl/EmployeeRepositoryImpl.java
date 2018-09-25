@@ -29,9 +29,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	}
 @Override
 	public Employee updateEmployee(Employee employee) {
-		int count = jdbcTemplate.update("UPDATE employees SET employee_Name=?,employee_Department=?,employee_Salary=?",
+		int count = jdbcTemplate.update("UPDATE employees SET employee_Name=?,employee_Department=?,employee_Salary=? WHERE employee_id=?" ,
 				new Object[] { employee.getEmployeeName(), employee.getEmployeDepartment(),
-						employee.getEmployeeSalary() });
+						employee.getEmployeeSalary(), employee.getEmployeeId()});
 		if (count != 0)
 
 			return employee;
@@ -40,7 +40,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	}
 @Override
 	public boolean deleteEmployee(int employeeId) {
-		int count = jdbcTemplate.update("DELETE FROM bank WHERE employee_id=?", new Object[] { employeeId });
+		int count = jdbcTemplate.update("DELETE FROM employees WHERE employee_id=?", new Object[] { employeeId });
 		
 				if(count != 0)
 					return true;
@@ -49,13 +49,13 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	}
 @Override
 	public Employee findEmployeeById(int employeeId) {
-		return jdbcTemplate.queryForObject("SELECT * FROM bank WHERE employee_id=?", new Object[] { employeeId },
+		return jdbcTemplate.queryForObject("SELECT * FROM employees WHERE employee_id=?", new Object[] { employeeId },
 				new EmployeeRowMapper());
 
 	}
 @Override
 	public List<Employee> findAllEmployees() {
-		return jdbcTemplate.query("SELECT *FROM employees", new Object[] {}, new EmployeeRowMapper());
+		return jdbcTemplate.query("SELECT * FROM employees", new Object[] {}, new EmployeeRowMapper());
 	}
 
 	private class EmployeeRowMapper implements RowMapper<Employee> {

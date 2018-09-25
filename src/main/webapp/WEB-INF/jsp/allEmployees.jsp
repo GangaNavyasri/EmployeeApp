@@ -30,8 +30,8 @@
 						<td>${employee.employeeName}</td>
 						<td>${employee.employeDepartment}</td>
 						<td>${employee.employeeSalary}</td>
-						<td><a href="/editEmployeePage/${employee.employeeId}">Edit</a></td>
-						<td><a href="/deleteEmployee/${employee.employeeId}">Delete</a></td>
+						<td><a href="editEmployeePage/${employee.employeeId}">Edit</a></td>
+						<td><a href="deleteEmployee/${employee.employeeId}">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
